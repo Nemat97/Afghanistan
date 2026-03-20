@@ -1,0 +1,774 @@
+/* ─── RESET ─────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+/* ─── PALETTE ────────────────────────────── */
+:root {
+  --lapis:        #1a3a6e; /* lapis lazuli — the stone of Afghanistan */
+  --lapis-dk:     #0f2247;
+  --lapis-lt:     #2a5299;
+  --saffron:      #d4890a; /* saffron fields */
+  --saffron-lt:   #f0b429;
+  --pomegranate:  #a82c1a; /* pomegranate red */
+  --earth:        #8b5e3c; /* dried mud walls */
+  --cream:        #f7f0e3; /* undyed wool */
+  --parchment:    #ede4cc; /* old manuscripts */
+  --ink:          #2a1f14; /* walnut ink */
+  --smoke:        #6b5c48;
+}
+
+/* ─── BASE ───────────────────────────────── */
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ─── CARPET BORDER PATTERN ─────────────── */
+.carpet-border {
+  width: 100%;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='18'%3E%3Crect width='40' height='18' fill='%231a3a6e'/%3E%3Cpolygon points='0,9 5,0 10,9 5,18' fill='%23d4890a'/%3E%3Cpolygon points='10,9 15,0 20,9 15,18' fill='%23f7f0e3'/%3E%3Cpolygon points='20,9 25,0 30,9 25,18' fill='%23d4890a'/%3E%3Cpolygon points='30,9 35,0 40,9 35,18' fill='%23f7f0e3'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+}
+
+.carpet-border.invert { transform: scaleY(-1); }
+
+/* ─── NAV ────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--lapis-dk);
+  border-bottom: 3px solid var(--saffron);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 56px;
+}
+
+nav .wordmark {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.3rem;
+  color: var(--saffron-lt);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav ul a {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247,240,227,0.55);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+nav ul a:hover { color: var(--saffron-lt); }
+
+nav ul a.active {
+  color: var(--saffron-lt);
+  border-bottom-color: var(--saffron);
+}
+
+/* hamburger */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--saffron-lt);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 700px) {
+  nav { padding: 0 1.5rem; }
+
+  .nav-toggle { display: flex; }
+
+  nav ul {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: var(--lapis-dk);
+    border-bottom: 3px solid var(--saffron);
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 0 1rem;
+    transform: translateY(-110%);
+    transition: transform 0.3s ease;
+    z-index: 199;
+  }
+
+  nav ul.open { transform: translateY(0); }
+
+  nav ul li a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-bottom: none;
+  }
+
+  nav ul a.active {
+    color: var(--saffron-lt);
+    background: rgba(212,137,10,0.08);
+  }
+}
+
+/* ─── HERO ───────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background-color: var(--lapis-dk);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7rem 2rem 5rem;
+  position: relative;
+}
+
+.hero-dari {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--saffron-lt);
+  margin-bottom: 1.5rem;
+  direction: rtl;
+  opacity: 0.85;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.05;
+  max-width: 860px;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--saffron-lt);
+}
+
+.hero-sub {
+  max-width: 560px;
+  color: rgba(247,240,227,0.65);
+  font-size: 1.05rem;
+  font-style: italic;
+  margin-bottom: 3rem;
+}
+
+/* Afghan flag bar */
+.flag-bar {
+  display: flex;
+  width: 80px;
+  height: 5px;
+  gap: 3px;
+  margin: 0 auto 2rem;
+}
+
+.flag-bar span { flex: 1; border-radius: 1px; }
+.flag-bar .bl { background: #000; }
+.flag-bar .rd { background: #D32011; }
+.flag-bar .gn { background: #009000; }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247,240,227,0.35);
+}
+
+/* ─── SECTION WRAPPERS ───────────────────── */
+.section-light { background: var(--cream); }
+.section-parch { background: var(--parchment); }
+.section-dark  { background: var(--lapis-dk); color: var(--cream); }
+.section-earth { background: #3d2b1f; color: var(--cream); }
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+/* ─── SECTION HEADER ─────────────────────── */
+.sh {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3.5rem;
+}
+
+.sh .kicker {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 0.6rem;
+}
+
+.sh h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  max-width: 700px;
+}
+
+.section-dark .sh .kicker,
+.section-earth .sh .kicker { color: var(--saffron-lt); }
+
+.section-dark .sh h2,
+.section-earth .sh h2 { color: var(--cream); }
+
+.sh .intro {
+  margin-top: 1rem;
+  max-width: 580px;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--smoke);
+}
+
+.section-dark .sh .intro,
+.section-earth .sh .intro { color: rgba(247,240,227,0.65); }
+
+/* ─── HISTORY TIMELINE ───────────────────── */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--saffron), var(--pomegranate), var(--lapis));
+}
+
+.tl-item {
+  position: relative;
+  padding: 0 0 3rem 2.5rem;
+}
+
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 0.4rem;
+  width: 14px;
+  height: 14px;
+  background: var(--saffron);
+  border: 3px solid var(--cream);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--saffron);
+}
+
+.tl-item .era {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 0.3rem;
+}
+
+.tl-item h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.tl-item p {
+  font-size: 0.96rem;
+  color: var(--smoke);
+  max-width: 620px;
+}
+
+/* GEO STATS */
+.history-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 4rem;
+  align-items: start;
+}
+
+.geo-aside {
+  position: sticky;
+  top: 5rem;
+}
+
+.geo-aside h3 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 1.5rem;
+}
+
+.geo-stat {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--parchment);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.geo-stat .val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--lapis);
+}
+
+.geo-stat .lbl {
+  font-size: 0.82rem;
+  color: var(--smoke);
+  text-align: right;
+  max-width: 130px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .history-layout { grid-template-columns: 1fr; }
+  .geo-aside { position: static; }
+}
+
+/* ─── CITIES ─────────────────────────────── */
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid rgba(247,240,227,0.12);
+}
+
+.city-card {
+  padding: 2rem 1.75rem;
+  border-right: 1px solid rgba(247,240,227,0.12);
+  border-bottom: 1px solid rgba(247,240,227,0.12);
+  transition: background 0.25s;
+  cursor: default;
+}
+
+.city-card:hover { background: rgba(212,137,10,0.08); }
+
+.city-card:nth-child(3n) { border-right: none; }
+
+.city-card .city-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: rgba(212,137,10,0.2);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.city-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.25rem;
+}
+
+.city-card .city-dari {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1rem;
+  color: var(--saffron-lt);
+  direction: rtl;
+  margin-bottom: 0.75rem;
+  opacity: 0.8;
+}
+
+.city-card p {
+  font-size: 0.88rem;
+  color: rgba(247,240,227,0.6);
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  .cities-grid { grid-template-columns: 1fr 1fr; }
+  .city-card:nth-child(3n) { border-right: 1px solid rgba(247,240,227,0.12); }
+  .city-card:nth-child(2n) { border-right: none; }
+}
+
+@media (max-width: 480px) {
+  .cities-grid { grid-template-columns: 1fr; }
+  .city-card { border-right: none !important; }
+}
+
+/* ─── CITY IMAGE ─────────────────────────── */
+.city-img {
+  display: block;
+  width: calc(100% + 3.5rem);
+  margin: -2rem -1.75rem 1.5rem;
+  height: 160px;
+  object-fit: cover;
+  opacity: 0.65;
+  filter: brightness(0.85) sepia(20%);
+  transition: opacity 0.35s, filter 0.35s;
+}
+
+.city-card:hover .city-img {
+  opacity: 0.85;
+  filter: brightness(0.95) sepia(8%);
+}
+
+/* ─── PHOTO BREAK ────────────────────────── */
+.photo-break {
+  height: 400px;
+  background-size: cover;
+  background-position: center 35%;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .photo-break {
+    height: 280px;
+    background-attachment: scroll;
+  }
+  .photo-break-text {
+    left: 1.5rem;
+    right: 1.5rem;
+    max-width: none;
+  }
+  .photo-break-text h3 { font-size: 1.4rem; }
+}
+
+.photo-break::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10,18,40,0.72) 0%, rgba(10,18,40,0.25) 55%, rgba(10,18,40,0.5) 100%);
+}
+
+.photo-break-text {
+  position: absolute;
+  left: 3.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  max-width: 480px;
+}
+
+.photo-break-text h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
+}
+
+.photo-break-text p {
+  font-size: 0.95rem;
+  color: rgba(247,240,227,0.65);
+  font-style: italic;
+  line-height: 1.65;
+}
+
+.photo-break-caption {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 2rem;
+  z-index: 2;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247,240,227,0.35);
+}
+
+/* ─── CULTURE WIDE ITEM ──────────────────── */
+.cult-item-wide {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 320px 40px 1fr;
+  gap: 0 1rem;
+  align-items: center;
+}
+
+.cult-item-wide img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  opacity: 0.8;
+  filter: sepia(15%);
+}
+
+@media (max-width: 640px) {
+  .cult-item-wide { grid-column: span 1; grid-template-columns: 40px 1fr; }
+  .cult-item-wide img { display: none; }
+}
+
+/* ─── CULTURE ────────────────────────────── */
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 4rem;
+}
+
+.cult-item {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 1rem;
+}
+
+.cult-item .marker {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--saffron);
+  line-height: 1.1;
+  font-style: italic;
+}
+
+.cult-item h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.cult-item p {
+  font-size: 0.9rem;
+  color: var(--smoke);
+  line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+  .culture-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── FOOD ───────────────────────────────── */
+.food-intro-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 700px) {
+  .food-intro-layout { grid-template-columns: 1fr; }
+}
+
+.food-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.4;
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--saffron);
+}
+
+.food-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.food-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid rgba(247,240,227,0.1);
+}
+
+.food-item {
+  padding: 1.4rem 1.6rem;
+  border: 1px solid rgba(247,240,227,0.1);
+  transition: background 0.2s;
+}
+
+.food-item:hover { background: rgba(212,137,10,0.07); }
+
+.food-item h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.2rem;
+}
+
+.food-item .dari {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.85rem;
+  color: var(--saffron-lt);
+  direction: rtl;
+  margin-bottom: 0.4rem;
+  opacity: 0.8;
+}
+
+.food-item p {
+  font-size: 0.84rem;
+  color: rgba(247,240,227,0.55);
+  line-height: 1.55;
+}
+
+/* ─── POETRY ─────────────────────────────── */
+.poem-block {
+  border-left: 3px solid var(--saffron);
+  padding: 2rem 2.5rem;
+  margin-bottom: 3rem;
+  background: rgba(255,255,255,0.03);
+  position: relative;
+}
+
+.poem-block::before {
+  content: '\201C';
+  font-family: 'Playfair Display', serif;
+  font-size: 8rem;
+  color: var(--saffron);
+  opacity: 0.1;
+  position: absolute;
+  top: -1.5rem;
+  left: 1rem;
+  line-height: 1;
+}
+
+.poem-block blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.poem-block .arabic {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.05rem;
+  direction: rtl;
+  text-align: right;
+  color: rgba(247,240,227,0.5);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.poem-block cite {
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--saffron-lt);
+  font-style: normal;
+}
+
+/* ─── LANGUAGE PILLS ─────────────────────── */
+.lang-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.lang-pill {
+  padding: 0.45rem 1.1rem;
+  border: 1px solid rgba(212,137,10,0.4);
+  font-size: 0.85rem;
+  color: rgba(247,240,227,0.75);
+  border-radius: 2px;
+  font-style: italic;
+}
+
+.lang-pill strong { color: var(--saffron-lt); font-style: normal; }
+
+/* ─── FOOTER ─────────────────────────────── */
+footer {
+  background: #0a1628;
+  border-top: 3px solid var(--saffron);
+  text-align: center;
+  padding: 4rem 2rem;
+  color: rgba(247,240,227,0.45);
+}
+
+footer .footer-dari {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 2.5rem;
+  color: rgba(212,137,10,0.5);
+  direction: rtl;
+  margin-bottom: 0.75rem;
+}
+
+footer .footer-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+footer p { font-size: 0.82rem; font-style: italic; }
+
+/* ─── RESPONSIVE ─────────────────────────── */
+@media (max-width: 768px) {
+  .wrap { padding: 3.5rem 1.25rem; }
+  .hero { padding: 5rem 1.5rem 3.5rem; }
+  .history-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .timeline { padding-left: 1.5rem; }
+  .tl-item { padding: 0 0 2rem 1.75rem; }
+  .food-intro-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+  .food-row { grid-template-columns: 1fr; }
+  .culture-grid { grid-template-columns: 1fr; }
+  .cult-item-wide { grid-column: span 1; grid-template-columns: 40px 1fr; }
+  .cult-item-wide img { display: none; }
+  .poem-block { padding: 1.5rem 1.25rem 1.5rem 1.5rem; }
+  .lang-row { gap: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .wrap { padding: 2.5rem 1rem; }
+  .geo-stat .val { font-size: 1.25rem; }
+  .food-quote { font-size: 1.25rem; }
+  footer { padding: 2.5rem 1rem; }
+}
