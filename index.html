@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Afghanistan — A Living Heritage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Noto+Naskh+Arabic&display=swap" rel="stylesheet">
+  <style>
+
+/* ─── RESET ─────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+/* ─── PALETTE ────────────────────────────── */
+:root {
+  --lapis:    #1a3a6e;   /* lapis lazuli — the stone of Afghanistan */
+  --lapis-dk: #0f2247;
+  --lapis-lt: #2a5299;
+  --saffron:  #d4890a;   /* saffron fields */
+  --saffron-lt: #f0b429;
+  --pomegranate: #a82c1a; /* pomegranate red */
+  --earth:    #8b5e3c;   /* dried mud walls ◊*/
+  --cream:    #f7f0e3;   /* undyed wool */
+  --parchment:#ede4cc;   /* old manuscripts */
+  --ink:      #2a1f14;   /* walnut ink */
+  --smoke:    #6b5c48;
+}
+
+/* ─── BASE ───────────────────────────────── */
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ─── CARPET BORDER PATTERN (SVG inline) ─── */
+.carpet-border {
+  width: 100%;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='18'%3E%3Crect width='40' height='18' fill='%231a3a6e'/%3E%3Cpolygon points='0,9 5,0 10,9 5,18' fill='%23d4890a'/%3E%3Cpolygon points='10,9 15,0 20,9 15,18' fill='%23f7f0e3'/%3E%3Cpolygon points='20,9 25,0 30,9 25,18' fill='%23d4890a'/%3E%3Cpolygon points='30,9 35,0 40,9 35,18' fill='%23f7f0e3'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+}
+
+.carpet-border.invert {
+  transform: scaleY(-1);
+}
+
+/* ─── NAV ────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: var(--lapis-dk);
+  border-bottom: 3px solid var(--saffron);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 56px;
+}
+
+nav .wordmark {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.3rem;
+  color: var(--saffron-lt);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav ul a {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(247,240,227,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+nav ul a:hover { color: var(--saffron-lt); }
+
+nav ul a.active {
+  color: var(--saffron-lt);
+  border-bottom-color: var(--saffron);
+}
+
+/* hamburger */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--saffron-lt);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 700px) {
+  nav { padding: 0 1.5rem; }
+
+  .nav-toggle { display: flex; }
+
+  nav ul {
+    position: fixed;
+    top: 56px; left: 0; right: 0;
+    background: var(--lapis-dk);
+    border-bottom: 3px solid var(--saffron);
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 0 1rem;
+    transform: translateY(-110%);
+    transition: transform 0.3s ease;
+    z-index: 199;
+  }
+
+  nav ul.open { transform: translateY(0); }
+
+  nav ul li a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-bottom: none;
+  }
+
+  nav ul a.active { color: var(--saffron-lt); background: rgba(212,137,10,0.08); }
+}
+
+/* ─── HERO ───────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background-color: var(--lapis-dk);
+  background-image:
+    linear-gradient(to bottom, rgba(10,18,40,0.68) 0%, rgba(10,18,40,0.45) 45%, rgba(10,18,40,0.78) 100%);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7rem 2rem 5rem;
+  position: relative;
+}
+
+.hero-dari {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--saffron-lt);
+  margin-bottom: 1.5rem;
+  direction: rtl;
+  opacity: 0.85;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.05;
+  max-width: 860px;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--saffron-lt);
+}
+
+.hero-sub {
+  max-width: 560px;
+  color: rgba(247,240,227,0.65);
+  font-size: 1.05rem;
+  font-style: italic;
+  margin-bottom: 3rem;
+}
+
+/* Afghan flag bar */
+.flag-bar {
+  display: flex;
+  width: 80px;
+  height: 5px;
+  gap: 3px;
+  margin: 0 auto 2rem;
+}
+.flag-bar span { flex:1; border-radius:1px; }
+.flag-bar .bl { background:#000; }
+.flag-bar .rd { background:#D32011; }
+.flag-bar .gn { background:#009000; }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247,240,227,0.35);
+}
+
+/* ─── SECTION WRAPPERS ───────────────────── */
+.section-light { background: var(--cream); }
+.section-parch { background: var(--parchment); }
+.section-dark  { background: var(--lapis-dk); color: var(--cream); }
+.section-earth { background: #3d2b1f; color: var(--cream); }
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+/* ─── SECTION HEADER ─────────────────────── */
+.sh {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3.5rem;
+}
+
+.sh .kicker {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 0.6rem;
+}
+
+.sh h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  max-width: 700px;
+}
+
+.section-dark .sh .kicker,
+.section-earth .sh .kicker { color: var(--saffron-lt); }
+
+.section-dark .sh h2,
+.section-earth .sh h2 { color: var(--cream); }
+
+.sh .intro {
+  margin-top: 1rem;
+  max-width: 580px;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--smoke);
+}
+
+.section-dark .sh .intro,
+.section-earth .sh .intro { color: rgba(247,240,227,0.65); }
+
+/* ─── HISTORY TIMELINE ───────────────────── */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--saffron), var(--pomegranate), var(--lapis));
+}
+
+.tl-item {
+  position: relative;
+  padding: 0 0 3rem 2.5rem;
+}
+
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 0.4rem;
+  width: 14px;
+  height: 14px;
+  background: var(--saffron);
+  border: 3px solid var(--cream);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--saffron);
+}
+
+.tl-item .era {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 0.3rem;
+}
+
+.tl-item h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.tl-item p {
+  font-size: 0.96rem;
+  color: var(--smoke);
+  max-width: 620px;
+}
+
+/* GEO STATS beside timeline */
+.history-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 4rem;
+  align-items: start;
+}
+
+.geo-aside {
+  position: sticky;
+  top: 5rem;
+}
+
+.geo-aside h3 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 1.5rem;
+}
+
+.geo-stat {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--parchment);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.geo-stat .val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--lapis);
+}
+
+.geo-stat .lbl {
+  font-size: 0.82rem;
+  color: var(--smoke);
+  text-align: right;
+  max-width: 130px;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .history-layout { grid-template-columns: 1fr; }
+  .geo-aside { position: static; }
+}
+
+/* ─── CITIES ─────────────────────────────── */
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid rgba(247,240,227,0.12);
+}
+
+.city-card {
+  padding: 2rem 1.75rem;
+  border-right: 1px solid rgba(247,240,227,0.12);
+  border-bottom: 1px solid rgba(247,240,227,0.12);
+  transition: background 0.25s;
+  cursor: default;
+}
+
+.city-card:hover { background: rgba(212,137,10,0.08); }
+
+.city-card:nth-child(3n) { border-right: none; }
+
+.city-card .city-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: rgba(212,137,10,0.2);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.city-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.25rem;
+}
+
+.city-card .city-dari {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.95rem;
+  color: var(--saffron-lt);
+  direction: rtl;
+  margin-bottom: 0.75rem;
+  opacity: 0.8;
+}
+
+.city-card p {
+  font-size: 0.9rem;
+  color: rgba(247,240,227,0.6);
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  .cities-grid { grid-template-columns: 1fr 1fr; }
+  .city-card:nth-child(3n) { border-right: 1px solid rgba(247,240,227,0.12); }
+  .city-card:nth-child(2n) { border-right: none; }
+}
+
+@media (max-width: 480px) {
+  .cities-grid { grid-template-columns: 1fr; }
+  .city-card { border-right: none !important; }
+}
+
+/* ─── CITY IMAGE ─────────────────────────── */
+.city-img {
+  display: block;
+  width: calc(100% + 3.5rem);
+  margin: -2rem -1.75rem 1.5rem;
+  height: 160px;
+  object-fit: cover;
+  opacity: 0.65;
+  filter: brightness(0.85) sepia(20%);
+  transition: opacity 0.35s, filter 0.35s;
+}
+
+.city-card:hover .city-img {
+  opacity: 0.85;
+  filter: brightness(0.95) sepia(8%);
+}
+
+/* ─── PHOTO BREAK ────────────────────────── */
+.photo-break {
+  height: 400px;
+  background-size: cover;
+  background-position: center 35%;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .photo-break {
+    height: 280px;
+    background-attachment: scroll;
+  }
+  .photo-break-text { left: 1.5rem; right: 1.5rem; max-width: none; }
+  .photo-break-text h3 { font-size: 1.4rem; }
+}
+
+.photo-break::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10,18,40,0.72) 0%, rgba(10,18,40,0.25) 55%, rgba(10,18,40,0.5) 100%);
+}
+
+.photo-break-text {
+  position: absolute;
+  left: 3.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  max-width: 480px;
+}
+
+.photo-break-text h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
+}
+
+.photo-break-text p {
+  font-size: 0.95rem;
+  color: rgba(247,240,227,0.65);
+  font-style: italic;
+  line-height: 1.65;
+}
+
+.photo-break-caption {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 2rem;
+  z-index: 2;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247,240,227,0.35);
+}
+
+/* ─── CULTURE WIDE ITEM ──────────────────── */
+.cult-item-wide {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 320px 40px 1fr;
+  gap: 0 1rem;
+  align-items: center;
+}
+
+.cult-item-wide img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  opacity: 0.8;
+  filter: sepia(15%);
+}
+
+@media (max-width: 640px) {
+  .cult-item-wide { grid-column: span 1; grid-template-columns: 40px 1fr; }
+  .cult-item-wide img { display: none; }
+}
+
+/* ─── CULTURE ────────────────────────────── */
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 4rem;
+}
+
+.cult-item {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 1rem;
+}
+
+.cult-item .marker {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--saffron);
+  line-height: 1.1;
+  font-style: italic;
+}
+
+.cult-item h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.cult-item p {
+  font-size: 0.9rem;
+  color: var(--smoke);
+  line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+  .culture-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── FOOD ───────────────────────────────── */
+.food-intro-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 700px) { .food-intro-layout { grid-template-columns: 1fr; } }
+
+.food-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.4;
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--saffron);
+}
+
+.food-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.food-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid rgba(247,240,227,0.1);
+  border-collapse: collapse;
+}
+
+.food-item {
+  padding: 1.4rem 1.6rem;
+  border: 1px solid rgba(247,240,227,0.1);
+  transition: background 0.2s;
+}
+
+.food-item:hover { background: rgba(212,137,10,0.07); }
+
+.food-item h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.2rem;
+}
+
+.food-item .dari {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.85rem;
+  color: var(--saffron-lt);
+  direction: rtl;
+  margin-bottom: 0.4rem;
+  opacity: 0.8;
+}
+
+.food-item p {
+  font-size: 0.84rem;
+  color: rgba(247,240,227,0.55);
+  line-height: 1.55;
+}
+
+/* ─── POETRY ─────────────────────────────── */
+.poem-block {
+  border-left: 3px solid var(--saffron);
+  padding: 2rem 2.5rem;
+  margin-bottom: 3rem;
+  background: rgba(255,255,255,0.03);
+  position: relative;
+}
+
+.poem-block::before {
+  content: '\201C';
+  font-family: 'Playfair Display', serif;
+  font-size: 8rem;
+  color: var(--saffron);
+  opacity: 0.1;
+  position: absolute;
+  top: -1.5rem;
+  left: 1rem;
+  line-height: 1;
+}
+
+.poem-block blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.poem-block .arabic {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.05rem;
+  direction: rtl;
+  text-align: right;
+  color: rgba(247,240,227,0.5);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.poem-block cite {
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--saffron-lt);
+  font-style: normal;
+}
+
+/* ─── LANGUAGE PILLS ─────────────────────── */
+.lang-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.lang-pill {
+  padding: 0.45rem 1.1rem;
+  border: 1px solid rgba(212,137,10,0.4);
+  font-size: 0.85rem;
+  color: rgba(247,240,227,0.75);
+  border-radius: 2px;
+  font-style: italic;
+}
+
+.lang-pill strong { color: var(--saffron-lt); font-style: normal; }
+
+/* ─── FOOTER ─────────────────────────────── */
+footer {
+  background: #0a1628;
+  border-top: 3px solid var(--saffron);
+  text-align: center;
+  padding: 4rem 2rem;
+  color: rgba(247,240,227,0.45);
+}
+
+footer .footer-dari {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 2.5rem;
+  color: rgba(212,137,10,0.5);
+  direction: rtl;
+  margin-bottom: 0.75rem;
+}
+
+footer .footer-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+footer p { font-size: 0.82rem; font-style: italic; }
+
+/* ─── RESPONSIVE ─────────────────────────── */
+@media (max-width: 768px) {
+  .wrap { padding: 3.5rem 1.25rem; }
+
+  .hero { padding: 5rem 1.5rem 3.5rem; }
+
+  .history-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .geo-aside { position: static; }
+  .timeline { padding-left: 1.5rem; }
+  .tl-item { padding: 0 0 2rem 1.75rem; }
+
+  .food-intro-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+  .food-row { grid-template-columns: 1fr; }
+
+  .culture-grid { grid-template-columns: 1fr; }
+  .cult-item-wide { grid-column: span 1; grid-template-columns: 40px 1fr; }
+  .cult-item-wide img { display: none; }
+
+  .poem-block { padding: 1.5rem 1.25rem 1.5rem 1.5rem; }
+
+  .lang-row { gap: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .wrap { padding: 2.5rem 1rem; }
+  .geo-stat .val { font-size: 1.25rem; }
+  .food-quote { font-size: 1.25rem; }
+  footer { padding: 2.5rem 1rem; }
+}
+
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="wordmark" href="#">افغانستان</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="#history">History</a></li>
+    <li><a href="#cities">Cities</a></li>
+    <li><a href="#culture">Culture</a></li>
+    <li><a href="#food">Food</a></li>
+    <li><a href="#poetry">Poetry</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" style="background-image: linear-gradient(to bottom, rgba(10,18,40,0.68) 0%, rgba(10,18,40,0.45) 45%, rgba(10,18,40,0.78) 100%), url('https://commons.wikimedia.org/wiki/Special:FilePath/Lake_in_National_park_in_Band-e_Amir,_Bamyan.JPG'); background-size: cover; background-position: center;">
+  <div class="hero-dari">افغانستان — سرزمین تمدن و میراث</div>
+  <h1>A land older than<br/><em>history</em> itself</h1>
+  <p class="hero-sub">At the crossroads of empires, poets, and caravans — Afghanistan has shaped the world for five thousand years.</p>
+  <div class="flag-bar">
+    <span class="bl"></span>
+    <span class="rd"></span>
+    <span class="gn"></span>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</div>
+
+<div class="carpet-border"></div>
+
+<!-- HISTORY -->
+<div class="section-light" id="history">
+  <div class="wrap">
+    <div class="sh">
+      <span class="kicker">Five Thousand Years</span>
+      <h2>History &amp; Geography</h2>
+      <p class="intro">From Zoroaster's fire altars to the caravans of the Silk Road — Afghanistan has been at the centre of the human story since before writing existed.</p>
+    </div>
+
+    <div class="history-layout">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="era">3000 BCE</div>
+          <h3>Bronze Age &amp; Mundigak</h3>
+          <p>The city of Mundigak near Kandahar thrived as a major urban centre, contemporary with the Indus Valley and Mesopotamian civilizations. Trade routes linked it to the Persian Gulf and the Ganges plain.</p>
+        </div>
+        <div class="tl-item">
+          <div class="era">600 BCE — Zoroastrianism</div>
+          <h3>The Prophet Zarathustra</h3>
+          <p>The lands of Bactria gave rise to one of humanity's oldest monotheistic faiths. Zoroastrianism shaped Persian, Jewish, Christian, and Islamic thought. Sacred fire temples dotted the Afghan plains for a thousand years.</p>
+        </div>
+        <div class="tl-item">
+          <div class="era">330 BCE</div>
+          <h3>Alexander &amp; Greco-Bactria</h3>
+          <p>Alexander the Great swept through, founding Alexandria on the Oxus. The resulting Greco-Bactrian Kingdom fused Hellenic with South Asian art — producing the extraordinary Gandharan sculpture tradition.</p>
+        </div>
+        <div class="tl-item">
+          <div class="era">7th–10th Century</div>
+          <h3>The Islamic Golden Age</h3>
+          <p>Under the Abbasid Caliphate and then the Samanids, Afghan cities became luminous centres of science, astronomy, and literature. Herat and Balkh rivalled Baghdad in learning and sophistication.</p>
+        </div>
+        <div class="tl-item">
+          <div class="era">11th–12th Century</div>
+          <h3>Ghaznavid &amp; Ghorid Empires</h3>
+          <p>Sultan Mahmud of Ghazni built a vast empire from Persia to India and attracted Al-Biruni and Ferdowsi to his court. The Ghorids built the soaring Minaret of Jam, still standing in a remote valley today.</p>
+        </div>
+        <div class="tl-item">
+          <div class="era">1747</div>
+          <h3>Birth of Modern Afghanistan</h3>
+          <p>Ahmad Shah Durrani united the Pashtun tribes at the Loya Jirga of Kandahar and founded the Durrani Empire — the foundation of the modern Afghan state, stretching from Khorasan to Kashmir.</p>
+        </div>
+      </div>
+
+      <div class="geo-aside">
+        <h3>By the Numbers</h3>
+        <div class="geo-stat">
+          <span class="val">652,000</span>
+          <span class="lbl">km² of mountains, deserts &amp; valleys</span>
+        </div>
+        <div class="geo-stat">
+          <span class="val">5,000+</span>
+          <span class="lbl">years of documented civilization</span>
+        </div>
+        <div class="geo-stat">
+          <span class="val">7,492 m</span>
+          <span class="lbl">Noshaq — highest peak</span>
+        </div>
+        <div class="geo-stat">
+          <span class="val">6</span>
+          <span class="lbl">borders: Iran, Pakistan, Tajikistan, Uzbekistan, Turkmenistan, China</span>
+        </div>
+        <div class="geo-stat">
+          <span class="val">Amu Darya</span>
+          <span class="lbl">the ancient Oxus river, northern border</span>
+        </div>
+        <div class="geo-stat">
+          <span class="val">Hindu Kush</span>
+          <span class="lbl">"Killer of Hindus" — the spine of the nation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="carpet-border invert"></div>
+
+<!-- PHOTO BREAK: Minaret of Jam -->
+<div class="photo-break" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Impressing_from_any_angle,_Minaret_of_Jam_-_panoramio.jpg')">
+  <div class="photo-break-text">
+    <h3>The Minaret of Jam</h3>
+    <p>Rising 65 metres from a remote valley in Ghor Province, built by Ghorid Sultan Ghiyas ud-Din in 1190 CE. One of the world's great medieval monuments — still standing, still alone, still magnificent.</p>
+  </div>
+  <span class="photo-break-caption">Ghor Province &mdash; 12th Century &mdash; UNESCO World Heritage</span>
+</div>
+
+<!-- CITIES -->
+<div class="section-dark" id="cities">
+  <div class="wrap">
+    <div class="sh">
+      <span class="kicker">Cities of Legend</span>
+      <h2>Where History Made Its Home</h2>
+      <p class="intro">Each Afghan city carries within its walls centuries of memory — of conquest and renaissance, of poetry recited by candlelight and caravans leaving at dawn.</p>
+    </div>
+
+    <div class="cities-grid">
+      <div class="city-card">
+        <img class="city-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Kabul_Afghanistan,_place_where_I_live.jpg" alt="Kabul" onerror="this.style.display='none'">
+        <div class="city-num">01</div>
+        <h3>Kabul</h3>
+        <div class="city-dari">کابل</div>
+        <p>Perched at 1,800m in a ring of mountains, Kabul has been a seat of power for the Kushans, Mughals, and Durranis. Babur, founder of the Mughal Empire, loved it so dearly he asked to be buried here.</p>
+      </div>
+      <div class="city-card">
+        <img class="city-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Friday_Mosque_in_Herat,_Afghanistan.jpg" alt="Herat Friday Mosque" onerror="this.style.display='none'">
+        <div class="city-num">02</div>
+        <h3>Herat</h3>
+        <div class="city-dari">هرات</div>
+        <p>Called the "Pearl of Khorasan." Under the Timurids in the 15th century, Herat was one of the world's great cities of art and learning. Its Friday Mosque, begun in 1200, remains among Islam's most beautiful.</p>
+      </div>
+      <div class="city-card">
+        <img class="city-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mountains_in_Afghanistan.JPG" alt="Kandahar region" onerror="this.style.display='none'">
+        <div class="city-num">03</div>
+        <h3>Kandahar</h3>
+        <div class="city-dari">کندهار</div>
+        <p>The spiritual homeland of the Pashtuns and first capital of modern Afghanistan. Its pomegranates and grapes are renowned across Central Asia. Alexander himself founded a city here — Alexandria Arachosia.</p>
+      </div>
+      <div class="city-card">
+        <img class="city-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Rowza_Shrine_Hazrat_Ali_Mazar-e_Sharif_Afghanistan.jpg" alt="Shrine of Hazrat Ali, Mazar-i-Sharif" onerror="this.style.display='none'">
+        <div class="city-num">04</div>
+        <h3>Mazar-i-Sharif</h3>
+        <div class="city-dari">مزارشریف</div>
+        <p>The Blue City, named for the dazzling lapis-tiled Shrine of Hazrat Ali. Every spring at Nowruz, thousands of pilgrims gather here for the raising of the Janda — one of Afghanistan's most spectacular celebrations.</p>
+      </div>
+      <div class="city-card">
+        <img class="city-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Bamyan_province_emerges_as_a_model_for_Afghanistan%27s_potential_120615-A-ZU930-015.jpg" alt="Northern Afghanistan landscape" onerror="this.style.display='none'">
+        <div class="city-num">05</div>
+        <h3>Balkh</h3>
+        <div class="city-dari">بلخ</div>
+        <p>Called "Mother of Cities" by Arab geographers. One of the oldest continuously inhabited places on earth. Zoroaster may have been born here. So was Rumi, before his family fled the Mongol advance westward.</p>
+      </div>
+      <div class="city-card">
+        <img class="city-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Bamyan_Valley_in_2012.jpg" alt="Bamiyan Valley" onerror="this.style.display='none'">
+        <div class="city-num">06</div>
+        <h3>Bamiyan</h3>
+        <div class="city-dari">بامیان</div>
+        <p>A great Buddhist centre on the Silk Road, carved into the cliffs of the Hindu Kush. Two colossal Buddha statues — 53m and 35m tall — stood here for 1,500 years. The valley is now a UNESCO World Heritage Site.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="carpet-border"></div>
+
+<!-- PHOTO BREAK: Band-e-Amir -->
+<div class="photo-break" style="background-image: url('https://commons.wikimedia.org/wiki/Special:FilePath/Lake_in_National_park_in_Band-e_Amir,_Bamyan.JPG'); background-position: center 60%;">
+  <div class="photo-break-text">
+    <h3>Band-e-Amir</h3>
+    <p>Six deep blue lakes held back by natural dams of travertine, high in the Hindu Kush at 2,900 metres. Afghanistan's first national park — one of the world's most extraordinary landscapes.</p>
+  </div>
+  <span class="photo-break-caption">Bamiyan Province &mdash; Band-e-Amir National Park</span>
+</div>
+
+<!-- CULTURE -->
+<div class="section-parch" id="culture">
+  <div class="wrap">
+    <div class="sh">
+      <span class="kicker">Living Traditions</span>
+      <h2>Culture &amp; the Afghan Way of Life</h2>
+      <p class="intro">Melmastia — the sacred obligation of hospitality — is the thread that runs through everything. An Afghan will give their last piece of bread before letting a guest leave hungry.</p>
+    </div>
+
+    <div class="culture-grid">
+      <div class="cult-item">
+        <span class="marker">I</span>
+        <div>
+          <h3>Nowruz — Persian New Year</h3>
+          <p>Celebrated on the spring equinox, Nowruz is Afghanistan's most beloved holiday. Families prepare Haft-Mewa (seven fruits), visit shrines, and gather at the Mazar-i-Sharif shrine to witness the raising of the Janda flag.</p>
+        </div>
+      </div>
+      <div class="cult-item-wide cult-item">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Nowruz_Buzkashi_Match_in_Mazar_(5778260045).jpg" alt="Buzkashi match in Mazar-i-Sharif" onerror="this.style.display='none'">
+        <span class="marker">II</span>
+        <div>
+          <h3>Buzkashi — The National Sport</h3>
+          <p>In this ancient equestrian game, dozens of riders compete to drag a goat carcass to a goal across a vast field. It is simultaneously sport, spectacle, and political theatre — the greatest players become legends.</p>
+        </div>
+      </div>
+      <div class="cult-item-wide cult-item">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Afghan_Carpet_Seller.jpg" alt="Afghan carpet seller" onerror="this.style.display='none'">
+        <span class="marker">III</span>
+        <div>
+          <h3>Afghan Carpets &amp; Kilims</h3>
+          <p>Afghan rugs are among the finest in the world. Each tribe has its own geometric vocabulary passed from mother to daughter. The patterns encode stories, prayers, and memories of landscapes left behind.</p>
+        </div>
+      </div>
+      <div class="cult-item">
+        <span class="marker">IV</span>
+        <div>
+          <h3>The Rubab — Lion of Instruments</h3>
+          <p>Afghanistan's national instrument, a short-necked lute with a sound that sits between a sitar and a lute. Afghan classical music blends Persian, Indian, and Central Asian styles and is inseparable from poetry recitation.</p>
+        </div>
+      </div>
+      <div class="cult-item">
+        <span class="marker">V</span>
+        <div>
+          <h3>Attan — The Circle Dance</h3>
+          <p>Afghanistan's national dance: a circle of dancers moving in unison to the beat of the dhol drum, spinning faster and faster until the room blurs. Performed at weddings, Eid, and national celebrations.</p>
+        </div>
+      </div>
+      <div class="cult-item">
+        <span class="marker">VI</span>
+        <div>
+          <h3>Gudiparan Bazi — Kite Fighting</h3>
+          <p>On winter Fridays, the skies above Kabul fill with kites. Fliers coat their strings with glass to cut rivals' lines — and the children race through the streets to catch the fallen kite. Immortalised in Khaled Hosseini's writing.</p>
+        </div>
+      </div>
+      <div class="cult-item">
+        <span class="marker">VII</span>
+        <div>
+          <h3>Loya Jirga — Grand Council</h3>
+          <p>An ancient institution of tribal consensus. When the nation faces a defining moment, a grand assembly of elders, tribal leaders, and scholars gathers to debate and decide. Democracy, Afghan style, for centuries.</p>
+        </div>
+      </div>
+      <div class="cult-item">
+        <span class="marker">VIII</span>
+        <div>
+          <h3>Melmastia — Sacred Hospitality</h3>
+          <p>The Pashtunwali code demands unconditional hospitality to any guest. Tea is poured before questions are asked. Meals are shared before business is discussed. A guest is considered a gift from God.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="carpet-border invert"></div>
+
+<!-- FOOD -->
+<div class="section-earth" id="food">
+  <div class="wrap">
+    <div class="sh">
+      <span class="kicker">From the Afghan Table</span>
+      <h2>Food &amp; Cuisine</h2>
+    </div>
+
+    <div class="food-intro-layout">
+      <p class="food-quote">"No guest leaves an Afghan home without eating. The table is not set — it is piled."</p>
+      <p style="color:rgba(247,240,227,0.6); font-style:italic; font-size:0.95rem; align-self:center;">
+        Afghan cuisine is built on slow cooking, fragrant spice, fresh bread from the clay tanoor,
+        and an abundance of dried fruits and nuts. Rice is sacred. Tea is constant. Generosity is mandatory.
+      </p>
+    </div>
+
+    <div class="food-list">
+      <div class="food-row">
+        <div class="food-item">
+          <h4>Kabuli Pulao</h4>
+          <div class="dari">کابلی پلو</div>
+          <p>The national dish. Fragrant basmati rice slow-cooked in lamb broth, topped with caramelised carrots, raisins, and tender meat. Served at every celebration.</p>
+        </div>
+        <div class="food-item">
+          <h4>Mantu</h4>
+          <div class="dari">منتو</div>
+          <p>Steamed dumplings stuffed with spiced minced beef and onion. Served over yogurt and tomato sauce with dried mint — a dish that takes all day to make and minutes to eat.</p>
+        </div>
+      </div>
+      <div class="food-row">
+        <div class="food-item">
+          <h4>Bolani</h4>
+          <div class="dari">بولانی</div>
+          <p>Crispy flatbread stuffed with potato, spinach, or lentils. Pan-fried until golden, eaten with yogurt or chutney. The great Afghan street food.</p>
+        </div>
+        <div class="food-item">
+          <h4>Naan</h4>
+          <div class="dari">نان</div>
+          <p>Baked in a clay tanoor oven, Afghan naan is thick, blistered, and seeded with nigella or sesame. Life does not begin without fresh bread in the morning.</p>
+        </div>
+      </div>
+      <div class="food-row">
+        <div class="food-item">
+          <h4>Ashak</h4>
+          <div class="dari">آشک</div>
+          <p>Boiled dumplings filled with chives and spring onions, served under a rich meat sauce and cold yogurt. A Kabul specialty and a labour of love.</p>
+        </div>
+        <div class="food-item">
+          <h4>Shorwa</h4>
+          <div class="dari">شوروا</div>
+          <p>A warming stew of lamb, chickpeas, and root vegetables, simmered for hours until the broth thickens. The smell alone is a kind of homecoming.</p>
+        </div>
+      </div>
+      <div class="food-row">
+        <div class="food-item">
+          <h4>Sholeh Zard</h4>
+          <div class="dari">شوله زرد</div>
+          <p>Saffron rice pudding dusted with cinnamon and cardamom. Traditionally made as a votive offering at mosques. Sweet, golden, and deeply comforting.</p>
+        </div>
+        <div class="food-item">
+          <h4>Dry Fruits &amp; Nuts</h4>
+          <div class="dari">میوه خشک</div>
+          <p>Afghanistan produces some of the world's finest pistachios, almonds, raisins, and pomegranates. Served to every guest the moment they sit down — before anything else is said.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="carpet-border"></div>
+
+<!-- POETRY & LANGUAGE -->
+<div class="section-dark" id="poetry">
+  <div class="wrap">
+    <div class="sh">
+      <span class="kicker">Words &amp; Wisdom</span>
+      <h2>Language &amp; Poetry</h2>
+      <p class="intro">Afghans have always been a people of words. Two great literary languages — Dari and Pashto — carry a tradition thousands of years old. Poetry is not an art form. It is a way of being.</p>
+    </div>
+
+    <div class="lang-row">
+      <span class="lang-pill"><strong>Dari</strong> — Persian dialect, language of literature &amp; courts</span>
+      <span class="lang-pill"><strong>Pashto</strong> — language of the Pashtuns, rich oral epic tradition</span>
+      <span class="lang-pill"><strong>Uzbek</strong> — northern Afghanistan</span>
+      <span class="lang-pill"><strong>Hazaragi</strong> — Dari variant of the Hazara people</span>
+      <span class="lang-pill"><strong>Turkmen · Balochi · Nuristani</strong></span>
+    </div>
+
+    <div class="poem-block">
+      <blockquote>
+        "Out beyond ideas of wrongdoing and rightdoing,<br/>
+        there is a field. I'll meet you there.<br/>
+        When the soul lies down in that grass,<br/>
+        the world is too full to talk about."
+      </blockquote>
+      <div class="arabic">
+        بیرون ز کفر و ایمان، بیابانی‌ست<br/>
+        عاشق را آنجاست قرار و آرام
+      </div>
+      <cite>Jalal ad-Din Rumi — Born in Balkh, Afghanistan, 1207 CE</cite>
+    </div>
+
+    <div class="poem-block">
+      <blockquote>
+        "I am the hawk of the mountains;<br/>
+        my nest is the high peak.<br/>
+        Do not mistake my silence for surrender —<br/>
+        I am the Pashtun, and freedom is my marrow."
+      </blockquote>
+      <div class="arabic">
+        زه د غره شاهین یم، چوپړ مې د غره دی<br/>
+        آزادي زما وینه ده، دا لار به نه پرېږدم
+      </div>
+      <cite>Khushal Khan Khattak — Pashtun Warrior-Poet, 1613–1689</cite>
+    </div>
+
+    <div class="poem-block">
+      <blockquote>
+        "Every morning a new sorrow finds its home in my heart,<br/>
+        yet every morning I rise, and I write.<br/>
+        O Kabul — your dust is sweeter to me<br/>
+        than the rose gardens of strangers."
+      </blockquote>
+      <div class="arabic">
+        هر صبح غمی تازه دلم را می‌فشرد<br/>
+        اما باز می‌نویسم — که خموشی خیانت است
+      </div>
+      <cite>Rabia Balkhi — First female poet of the Persian language, born in Balkh</cite>
+    </div>
+  </div>
+</div>
+
+<div class="carpet-border invert"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-dari">افغانستان</div>
+  <div class="footer-title">Afghanistan — A Living Heritage</div>
+  <p>A civilization older than its wounds. A people who have outlasted every empire that tried to erase them.</p>
+</footer>
+
+<script>
+  // ── Hamburger toggle ──────────────────────
+  const toggle = document.getElementById('navToggle');
+  const menu   = document.getElementById('navMenu');
+
+  toggle.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    toggle.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open);
+  });
+
+  // Close menu when a link is clicked
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      toggle.classList.remove('open');
+    });
+  });
+
+  // ── Active nav link on scroll ─────────────
+  const sections = document.querySelectorAll('div[id], section[id]');
+  const navLinks = document.querySelectorAll('#navMenu a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle(
+            'active',
+            link.getAttribute('href') === '#' + entry.target.id
+          );
+        });
+      }
+    });
+  }, {
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
