@@ -1000,6 +1000,31 @@ footer p { font-size: 0.82rem; font-style: italic; }
 
 .lang-pill strong { color: var(--saffron-lt); font-style: normal; }
 
+/* ─── SECTION BANNER IMAGE ──────────────── */
+.sect-banner {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 3.5rem;
+  filter: brightness(0.82) sepia(12%);
+}
+
+@media (max-width: 768px) {
+  .sect-banner { height: 200px; margin-bottom: 2.5rem; }
+}
+
+/* ─── CULTURE ITEM IMAGE ─────────────────── */
+.cult-item-img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+  opacity: 0.72;
+  filter: sepia(12%) brightness(0.9);
+  display: block;
+}
+
 /* ─── CRAFT SECTION ─────────────────────── */
 .craft-layout {
   display: grid;
