@@ -859,45 +859,60 @@ footer p { font-size: 0.82rem; font-style: italic; }
 }
 
 /* ─── CULTURE ────────────────────────────── */
-.cult-item-wide {
-  grid-column: span 2;
-  display: grid;
-  grid-template-columns: 320px 40px 1fr;
-  gap: 0 1rem;
-  align-items: center;
-}
-
-.cult-item-wide img {
-  width: 100%;
-  height: 210px;
-  object-fit: cover;
-  opacity: 0.8;
-  filter: sepia(15%);
-}
-
-@media (max-width: 640px) {
-  .cult-item-wide { grid-column: span 1; grid-template-columns: 40px 1fr; }
-  .cult-item-wide img { display: none; }
-}
-
 .culture-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem 4rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 
 .cult-item {
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  border-top: 3px solid var(--saffron);
+  overflow: hidden;
+}
+
+.cult-item-wide {
+  grid-column: span 3;
   display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 1rem;
+  grid-template-columns: 420px 1fr;
+  background: var(--cream);
+  border-top: 3px solid var(--saffron);
+}
+
+.cult-item-wide > img {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  object-fit: cover;
+  display: block;
+  opacity: 0.88;
+  filter: sepia(10%);
+}
+
+.cult-item-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+  opacity: 0.85;
+  filter: sepia(10%);
+}
+
+.cult-item-body {
+  padding: 1.5rem;
+  flex: 1;
 }
 
 .cult-item .marker {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
+  display: block;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
   color: var(--saffron);
-  line-height: 1.1;
-  font-style: italic;
+  margin-bottom: 0.5rem;
 }
 
 .cult-item h3 {
@@ -905,13 +920,21 @@ footer p { font-size: 0.82rem; font-style: italic; }
   font-size: 1.05rem;
   font-weight: 400;
   color: var(--ink);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
 }
 
-.cult-item p { font-size: 0.9rem; color: var(--smoke); line-height: 1.65; }
+.cult-item p { font-size: 0.88rem; color: var(--smoke); line-height: 1.7; }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
+  .culture-grid { grid-template-columns: repeat(2, 1fr); }
+  .cult-item-wide { grid-column: span 2; grid-template-columns: 280px 1fr; }
+}
+
+@media (max-width: 600px) {
   .culture-grid { grid-template-columns: 1fr; }
+  .cult-item-wide { grid-column: span 1; grid-template-columns: 1fr; }
+  .cult-item-wide > img { min-height: 200px; }
 }
 
 /* ─── FOOD ───────────────────────────────── */
@@ -1014,16 +1037,6 @@ footer p { font-size: 0.82rem; font-style: italic; }
   .sect-banner { height: 200px; margin-bottom: 2.5rem; }
 }
 
-/* ─── CULTURE ITEM IMAGE ─────────────────── */
-.cult-item-img {
-  width: 100%;
-  height: 110px;
-  object-fit: cover;
-  margin-bottom: 0.75rem;
-  opacity: 0.72;
-  filter: sepia(12%) brightness(0.9);
-  display: block;
-}
 
 /* ─── CRAFT SECTION ─────────────────────── */
 .craft-layout {
