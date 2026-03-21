@@ -1000,6 +1000,74 @@ footer p { font-size: 0.82rem; font-style: italic; }
 
 .lang-pill strong { color: var(--saffron-lt); font-style: normal; }
 
+/* ─── CRAFT SECTION ─────────────────────── */
+.craft-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.craft-story p {
+  font-size: 1.05rem;
+  color: rgba(247,240,227,0.68);
+  line-height: 1.9;
+  margin-bottom: 1.25rem;
+}
+
+.craft-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--saffron-lt);
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--saffron);
+  margin-top: 2.5rem;
+  line-height: 1.5;
+}
+
+.craft-stones h3 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 2rem;
+}
+
+.stone-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(247,240,227,0.07);
+}
+
+.stone-dari {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 2rem;
+  color: rgba(212,137,10,0.45);
+  direction: rtl;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.stone-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.35rem;
+}
+
+.stone-note {
+  font-size: 0.85rem;
+  color: rgba(247,240,227,0.45);
+  line-height: 1.65;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .craft-layout { grid-template-columns: 1fr; gap: 3rem; }
+}
+
 /* ─── REDESIGNED POETRY ──────────────────── */
 .poet-grid {
   display: grid;
