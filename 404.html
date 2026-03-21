@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found — Nemat</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Noto+Naskh+Arabic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .not-found {
+      min-height: 100vh;
+      background: var(--lapis-dk);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .not-found-arabic {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: rgba(212,137,10,0.5);
+      direction: rtl;
+      margin-bottom: 1.5rem;
+    }
+    .not-found-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(6rem, 20vw, 14rem);
+      font-weight: 400;
+      color: rgba(247,240,227,0.06);
+      line-height: 1;
+      margin-bottom: 0;
+    }
+    .not-found h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400;
+      color: var(--cream);
+      margin-top: -1rem;
+      margin-bottom: 1rem;
+    }
+    .not-found p {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(247,240,227,0.45);
+      max-width: 420px;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+    }
+    .not-found-home {
+      display: inline-block;
+      padding: 0.8rem 2.2rem;
+      background: var(--saffron);
+      color: var(--ink);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .not-found-home:hover { background: var(--saffron-lt); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="wordmark" href="index.html" lang="fa">نعمت</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="afghanistan.html">Heritage</a></li>
+    </ul>
+  </nav>
+
+  <div class="not-found">
+    <div class="not-found-arabic">یافت نشد</div>
+    <div class="not-found-num">404</div>
+    <h1>This page doesn&rsquo;t exist</h1>
+    <p>Like a caravan route that shifted over the centuries — what you&rsquo;re looking for isn&rsquo;t here. But the rest of the site is.</p>
+    <a href="index.html" class="not-found-home">Return home &rarr;</a>
+  </div>
+</body>
+</html>

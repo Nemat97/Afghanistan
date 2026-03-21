@@ -18,8 +18,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Noto+Naskh+Arabic&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://home.nemat.ch/afghanistan.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Afghanistan — A Living Heritage",
+    "description": "Five thousand years of Afghan history, culture, cities, poetry, and craft. A civilization older than its wounds.",
+    "url": "https://home.nemat.ch/afghanistan.html",
+    "author": { "@type": "Person", "name": "Nemat", "url": "https://home.nemat.ch/" },
+    "about": { "@type": "Country", "name": "Afghanistan" }
+  }
+  </script>
 </head>
 <body>
+
+<div id="read-progress"></div>
 
 <nav>
   <a class="wordmark" href="index.html" lang="fa">نعمت</a>
@@ -59,7 +73,7 @@
 <div class="carpet-border"></div>
 
 <!-- HISTORY -->
-<div class="section-light" id="history">
+<div class="section-light fade-in" id="history">
   <div class="wrap">
     <div class="sh">
       <span class="kicker">Five Thousand Years</span>
@@ -130,7 +144,7 @@
 </div>
 
 <!-- CITIES -->
-<div class="section-dark" id="cities">
+<div class="section-dark fade-in" id="cities">
   <div class="wrap">
     <div class="sh">
       <span class="kicker">Cities of Legend</span>
@@ -210,7 +224,7 @@
 </div>
 
 <!-- CULTURE -->
-<div class="section-parch" id="culture">
+<div class="section-parch fade-in" id="culture">
   <div class="wrap">
     <div class="sh">
       <span class="kicker">Living Traditions</span>
@@ -297,7 +311,7 @@
 <div class="carpet-border invert"></div>
 
 <!-- FOOD -->
-<div class="section-earth" id="food">
+<div class="section-earth fade-in" id="food">
   <div class="wrap">
     <div class="sh">
       <span class="kicker">From the Afghan Table</span>
@@ -339,7 +353,7 @@
 <div class="carpet-border"></div>
 
 <!-- POETRY -->
-<div class="section-dark" id="poetry">
+<div class="section-dark fade-in" id="poetry">
   <div class="wrap">
     <div class="sh">
       <span class="kicker">Words &amp; Wisdom</span>
@@ -440,6 +454,8 @@
   <div class="footer-title">Afghanistan — A Living Heritage</div>
   <p>A civilization older than its wounds. A people who have outlasted every empire that tried to erase them.</p>
 </footer>
+
+<button id="scroll-top" aria-label="Back to top">&#8593;</button>
 
 <script>
   // ── Hamburger ─────────────────────────────
@@ -567,6 +583,27 @@
     if (activeCard) activeCard.classList.remove('active');
     activeCard = null;
   }
+
+  // ── Reading progress bar ──────────────────
+  const progressBar = document.getElementById('read-progress');
+  window.addEventListener('scroll', () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (window.scrollY / docHeight * 100) + '%';
+  });
+
+  // ── Scroll-to-top ─────────────────────────
+  const scrollTopBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('show', window.scrollY > 500);
+  });
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // ── Fade-in on scroll ─────────────────────
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const fadeObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  fadeEls.forEach(el => fadeObserver.observe(el));
 </script>
 </body>
 </html>

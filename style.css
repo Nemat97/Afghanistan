@@ -1207,3 +1207,74 @@ footer p { font-size: 0.82rem; font-style: italic; }
   .poet-grid { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 0; }
   .poet-num { font-size: 4rem; }
 }
+
+
+/* ════════════════════════════════════════════
+   GLOBAL UI COMPONENTS
+   ════════════════════════════════════════════ */
+
+/* ─── FADE-IN ON SCROLL ──────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── READING PROGRESS BAR ───────────────── */
+#read-progress {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(to right, var(--saffron), var(--saffron-lt));
+  z-index: 199;
+  pointer-events: none;
+  transition: width 0.08s linear;
+}
+
+/* ─── SCROLL TO TOP ──────────────────────── */
+#scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  background: var(--lapis-dk);
+  border: 1px solid rgba(212,137,10,0.5);
+  color: var(--saffron-lt);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, background 0.2s, border-color 0.2s;
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#scroll-top.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+#scroll-top:hover {
+  background: var(--lapis);
+  border-color: var(--saffron);
+}
+
+/* ─── STONE COLOR DOT ────────────────────── */
+.stone-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 0.55rem;
+  vertical-align: middle;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+}

@@ -18,6 +18,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Noto+Naskh+Arabic&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://home.nemat.ch/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "name": "Nemat",
+    "url": "https://home.nemat.ch/",
+    "description": "Afghan by origin. Builder by nature. My family has made silver rings in Ghazni for generations.",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Nemat",
+      "url": "https://home.nemat.ch/",
+      "description": "Afghan builder with roots in Ghazni. Family craft: silver rings, set with aqiq, feroza, and lapis."
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -51,7 +67,7 @@
   <div class="carpet-border"></div>
 
   <!-- ABOUT -->
-  <div class="section-light" id="about">
+  <div class="section-light fade-in" id="about">
     <div class="wrap">
       <img
         class="sect-banner"
@@ -95,7 +111,7 @@
   <div class="carpet-border invert"></div>
 
   <!-- FAMILY CRAFT -->
-  <div class="section-earth" id="craft">
+  <div class="section-earth fade-in" id="craft">
     <div class="wrap">
       <img
         class="sect-banner"
@@ -123,22 +139,22 @@
           <h3>The Stones We Set</h3>
           <div class="stone-item">
             <div class="stone-dari" lang="fa">عقیق</div>
-            <div class="stone-name">Aqiq &mdash; Carnelian</div>
+            <div class="stone-name"><span class="stone-dot" style="background:#b53a2a;"></span>Aqiq &mdash; Carnelian</div>
             <div class="stone-note">The most beloved stone in Islamic tradition. The Prophet Muhammad wore a carnelian ring on his right hand. It is said to bring protection and strength. We work more aqiq than any other stone.</div>
           </div>
           <div class="stone-item">
             <div class="stone-dari" lang="fa">فیروزه</div>
-            <div class="stone-name">Feroza &mdash; Turquoise</div>
+            <div class="stone-name"><span class="stone-dot" style="background:#2aadad;"></span>Feroza &mdash; Turquoise</div>
             <div class="stone-note">From the ancient mines of Nishapur, just across the Afghan border in Khorasan. The colour of the dome above Ghazni's great mosque. No two stones are the same.</div>
           </div>
           <div class="stone-item">
             <div class="stone-dari" lang="fa">لاجورد</div>
-            <div class="stone-name">Lajward &mdash; Lapis Lazuli</div>
+            <div class="stone-name"><span class="stone-dot" style="background:#2a5ab5;"></span>Lajward &mdash; Lapis Lazuli</div>
             <div class="stone-note">Mined in Badakhshan, Afghanistan, for over six thousand years. Traded along the Silk Road, ground into the blue of Renaissance paintings. The deepest colour the earth produces.</div>
           </div>
           <div class="stone-item">
             <div class="stone-dari" lang="fa">دُرّ نجف</div>
-            <div class="stone-name">Dur-e-Najaf &mdash; Rock Crystal</div>
+            <div class="stone-name"><span class="stone-dot" style="background:#c8cfd8;"></span>Dur-e-Najaf &mdash; Rock Crystal</div>
             <div class="stone-note">Clear crystal from the holy city of Najaf. Prized in Shia tradition, worn for its spiritual purity. Set in heavy silver, it catches the light like water.</div>
           </div>
         </div>
@@ -149,7 +165,7 @@
   <div class="carpet-border"></div>
 
   <!-- WORK -->
-  <div class="section-dark" id="work">
+  <div class="section-dark fade-in" id="work">
     <div class="wrap">
       <div class="sh">
         <span class="kicker">What I&rsquo;m building</span>
@@ -164,9 +180,9 @@
           <div class="ph-project-arrow">Explore the site &rarr;</div>
         </a>
         <div class="ph-project-card ph-project-soon">
-          <div class="ph-project-label">Coming</div>
-          <h3>Next thing</h3>
-          <p>Something is being built here. Check back.</p>
+          <div class="ph-project-label">In progress</div>
+          <h3>Learning in public</h3>
+          <p>Notes on building, heritage, and figuring things out. Written as it happens.</p>
         </div>
       </div>
     </div>
@@ -179,6 +195,8 @@
     <div class="footer-title">Nemat</div>
     <p>Building at the crossroads of heritage and code.</p>
   </footer>
+
+  <button id="scroll-top" aria-label="Back to top">&#8593;</button>
 
   <script>
     const toggle = document.getElementById('navToggle');
@@ -212,6 +230,20 @@
     }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
 
     sections.forEach(s => observer.observe(s));
+
+    // ── Scroll-to-top ──────────────────────────
+    const scrollTopBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('show', window.scrollY > 400);
+    });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ── Fade-in on scroll ──────────────────────
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const fadeObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    fadeEls.forEach(el => fadeObserver.observe(el));
   </script>
 </body>
 </html>
